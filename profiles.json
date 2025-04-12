@@ -1,0 +1,462 @@
+{
+  "mentors": [
+    {
+      "id": "67e7ceff5db3de192ba57c64",
+      "name": " Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "role": "mentor",
+      "expertise": "Software Engineering",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "availability": "Weekdays 9am-5pm",
+      "bio": "Experienced full-stack developer passionate about mentoring and building scalable",
+      "experience": 8,
+      "rates": 60
+    },
+    {
+      "id": "67e7cf595db3de192ba57c87",
+      "name": " Charles Smith",
+      "email": "charles.smith@example.com",
+      "role": "mentor",
+      "expertise": "Data Science",
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "TensorFlow",
+        "R"
+      ],
+      "availability": "Weekends 10am-4pm",
+      "bio": "Data scientist with a strong research background dedicated to helping mentees excel in analytics.",
+      "experience": 5,
+      "rates": 69
+    },
+    {
+      "id": "67e7cfbb5db3de192ba57caa",
+      "name": "Catherine Lee",
+      "email": "catherine.lee@example.com",
+      "role": "mentor",
+      "expertise": " UI/UX Design",
+      "skills": [
+        "Adobe XD",
+        "Figma",
+        "Sketch",
+        "CSS",
+        "HTML"
+      ],
+      "availability": "Weekdays 10am-6pm",
+      "bio": "UI/UX designer with 7 years in the field and a knack for teaching design principles.",
+      "experience": 7,
+      "rates": 55
+    },
+    {
+      "id": "67e7d0085db3de192ba57ccd",
+      "name": "Arthur Davis",
+      "email": "arthur.davis@example.com",
+      "role": "mentor",
+      "expertise": " Cybersecurity",
+      "skills": [
+        "Network Security",
+        "Penetration Testing",
+        "Ethical Hacking"
+      ],
+      "availability": "Weekdays 8am-4pm",
+      "bio": "Cybersecurity specialist with over 10 years of experience protecting enterprise systems.",
+      "experience": 10,
+      "rates": 79
+    },
+    {
+      "id": "67e7d0645db3de192ba57cf0",
+      "name": "Emily Turner",
+      "email": "emily.turner@example.com",
+      "role": "mentor",
+      "expertise": "Mobile Development",
+      "skills": [
+        "Swift",
+        "Kotlin",
+        "React Native",
+        "Flutter"
+      ],
+      "availability": "Weekdays 9am-5pm",
+      "bio": "Mobile developer with 6 years of experience building cross-platform apps and mentoring juniors.",
+      "experience": 6,
+      "rates": 65
+    },
+    {
+      "id": "67e7d0b45db3de192ba57d13",
+      "name": "Michael Carter",
+      "email": "michael.carter@example.com",
+      "role": "mentor",
+      "expertise": "Cloud Computing",
+      "skills": [
+        "AWS",
+        "Azure",
+        "Google Cloud",
+        "Docker",
+        "Kubernetes"
+      ],
+      "availability": "Weekdays 10am-6pm",
+      "bio": "Cloud solutions architect with a passion for teaching best practices in cloud deployments.",
+      "experience": 9,
+      "rates": 73
+    },
+    {
+      "id": "67e7d1015db3de192ba57d37",
+      "name": "Olivia Martin",
+      "email": "olivia.martin@example.com",
+      "role": "mentor",
+      "expertise": "DevOps",
+      "skills": [
+        "Jenkins",
+        "Git",
+        "Docker",
+        "Kubernetes",
+        "CI/CD"
+      ],
+      "availability": "Weekdays 8am-4pm",
+      "bio": "DevOps engineer who enjoys automating processes and mentoring teams on best practices.",
+      "experience": 7,
+      "rates": 68
+    },
+    {
+      "id": "67e7d14a5db3de192ba57d5a",
+      "name": "Benjamin Scott",
+      "email": "benjamin.scott@example.com",
+      "role": "mentor",
+      "expertise": "Software Architecture",
+      "skills": [
+        "Microservices",
+        "System Design",
+        "Java",
+        "Spring Boot"
+      ],
+      "availability": " Weekdays 9am-5pm",
+      "bio": "Architect with 10 years of experience designing scalable systems and guiding teams.",
+      "experience": 10,
+      "rates": 84
+    },
+    {
+      "id": "67e7d1985db3de192ba57d7e",
+      "name": "Sophia Richardson",
+      "email": "sophia.richardson@example.com",
+      "role": "mentor",
+      "expertise": "Front-End Development",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vue.js",
+        "Angular"
+      ],
+      "availability": "Weekdays 10am-6pm",
+      "bio": "Front-end developer with 6 years of experience creating engaging user interfaces.",
+      "experience": 6,
+      "rates": 59
+    },
+    {
+      "id": "67e7d1e35db3de192ba57da1",
+      "name": "Daniel Brooks",
+      "email": "daniel.brooks@example.com",
+      "role": "mentor",
+      "expertise": "Database Management",
+      "skills": [
+        "SQL",
+        "NoSQL",
+        "MongoDB",
+        "PostgreSQL",
+        "Oracle"
+      ],
+      "availability": "Weekdays 8am-4pm",
+      "bio": "Database expert with 8 years of experience managing high-performance databases and mentoring teams.",
+      "experience": 8,
+      "rates": 69
+    }
+  ],
+  "mentees": [
+    {
+      "id": "67e7d22a5db3de192ba57dc4",
+      "name": " James Bond",
+      "email": "james.bond@example.com",
+      "role": "mentee",
+      "interests": [
+        "Data Science",
+        "Machine Learning",
+        "Python"
+      ],
+      "goals": "Improve data analysis skills and build predictive models."
+    },
+    {
+      "id": "67e7d25f5db3de192ba57de7",
+      "name": "Frank Wilson",
+      "email": "frank.wilson@example.com",
+      "role": "mentee",
+      "interests": [
+        "UI/UX Design",
+        "Adobe XD",
+        "User Research"
+      ],
+      "goals": "Develop strong design fundamentals and create intuitive user interfaces."
+    },
+    {
+      "id": "67e7d29d5db3de192ba57e0a",
+      "name": "David Miller",
+      "email": "david.miller@example.com",
+      "role": "mentee",
+      "interests": [
+        "Web Development",
+        "JavaScript",
+        "React"
+      ],
+      "goals": "Learn full-stack development and build responsive web applications."
+    },
+    {
+      "id": "67e7d2d95db3de192ba57e2d",
+      "name": "Eva Green",
+      "email": "eva.green@example.com",
+      "role": "mentee",
+      "interests": [
+        "ybersecurity",
+        "Ethical Hacking",
+        "Network Security"
+      ],
+      "goals": "Become a certified cybersecurity professional and learn penetration testing."
+    },
+    {
+      "id": "67e7d30b5db3de192ba57e50",
+      "name": "Olivia Parker",
+      "email": "olivia.parker@example.com",
+      "role": "mentee",
+      "interests": [
+        "Cloud Computing",
+        "DevOps",
+        "Docker"
+      ],
+      "goals": " Gain expertise in cloud technologies and CI/CD pipelines."
+    },
+    {
+      "id": "67e7d3455db3de192ba57e73",
+      "name": " Ethan Harris",
+      "email": "ethan.harris@example.com",
+      "role": "mentee",
+      "interests": [
+        "Software Engineering",
+        "System Design",
+        "Java"
+      ],
+      "goals": "Improve coding and system design skills for building scalable systems."
+    },
+    {
+      "id": "67e7d37e5db3de192ba57e97",
+      "name": "Mia Roberts",
+      "email": "mia.roberts@example.com",
+      "role": "mentee",
+      "interests": [
+        "Front-End Development",
+        "Responsive Design",
+        "UX"
+      ],
+      "goals": "Enhance front-end development skills and build engaging user interfaces."
+    },
+    {
+      "id": "67e7d3be5db3de192ba57eba",
+      "name": " Lucas Turner",
+      "email": "lucas.turner@example.com",
+      "role": "mentee",
+      "interests": [
+        "Mobile Development",
+        "iOS",
+        "Android"
+      ],
+      "goals": "Learn mobile app development and create cross-platform apps."
+    },
+    {
+      "id": "67e7d3fe5db3de192ba57edd",
+      "name": "Isabella King",
+      "email": "isabella.king@example.com",
+      "role": "mentee",
+      "interests": [
+        "Database Management",
+        "SQL",
+        "NoSQL"
+      ],
+      "goals": "Master database design and management techniques."
+    },
+    {
+      "id": "67e7d4355db3de192ba57f00",
+      "name": "Mason Scott",
+      "email": "mason.scott@example.com",
+      "role": "mentee",
+      "interests": [
+        "AI",
+        "Machine Learning",
+        "Deep Learning"
+      ],
+      "goals": "Build a strong foundation in AI and work on cutting-edge projects."
+    }
+  ],
+  "users": [
+    {
+      "_id": "67e7ceff5db3de192ba57c64",
+      "name": " Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "password": "$2b$10$K9lRt9zmOYxsO.KftSgEUeFaozGHJ.XJQYMTgS.uzb0FbLZdrajzK",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7cf595db3de192ba57c87",
+      "name": " Charles Smith",
+      "email": "charles.smith@example.com",
+      "password": "$2b$10$iDv9Rosy6ac9fbar4t9Qr.DRrds96Bjx6Lda7IKPaUSqBX3RBMHCa",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7cfbb5db3de192ba57caa",
+      "name": "Catherine Lee",
+      "email": "catherine.lee@example.com",
+      "password": "$2b$10$cVptK2P7Av5yiVtgsb7x1eOraK2KFJJS1m2UjPZi61.2bkdnG5zkW",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d0085db3de192ba57ccd",
+      "name": "Arthur Davis",
+      "email": "arthur.davis@example.com",
+      "password": "$2b$10$6sYx923vPMcV1NrUuF2CJ.Y8w/fb4vJtYDvjaUGLu2xC1iR6hz.o6",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d0645db3de192ba57cf0",
+      "name": "Emily Turner",
+      "email": "emily.turner@example.com",
+      "password": "$2b$10$.vkWSsCvsELOYPof4I6biONkYHEpva03bE76nf3X2Zcy2ppfdikC2",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d0b45db3de192ba57d13",
+      "name": "Michael Carter",
+      "email": "michael.carter@example.com",
+      "password": "$2b$10$CwK/NbEokZYv1Xal.l223.3tIVvRplRsaFSFGyrH05S1i31zoFL1u",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d1015db3de192ba57d37",
+      "name": "Olivia Martin",
+      "email": "olivia.martin@example.com",
+      "password": "$2b$10$dlYTnMNLh.q9Yx58BmQqxu1GtWVIODAHth7WOEmrRfmp9n/UvOnQ.",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d14a5db3de192ba57d5a",
+      "name": "Benjamin Scott",
+      "email": "benjamin.scott@example.com",
+      "password": "$2b$10$/fsPmy..FgAarXjeM4zYlOxfLl38.OcNvc4C4QR2cCjirVoapl/SK",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d1985db3de192ba57d7e",
+      "name": "Sophia Richardson",
+      "email": "sophia.richardson@example.com",
+      "password": "$2b$10$AYFQRlOXvr4Uw6mn5e2RnOMkuustrhT0xJuzCeVMuMpq83UVieFFe",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d1e35db3de192ba57da1",
+      "name": "Daniel Brooks",
+      "email": "daniel.brooks@example.com",
+      "password": "$2b$10$bmaLdac6kCKCGXTqaTu8z.2Ab3jFmqG.G6QHC/Xo3bGYoid8Fif/W",
+      "role": "mentor",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d22a5db3de192ba57dc4",
+      "name": " James Bond",
+      "email": "james.bond@example.com",
+      "password": "$2b$10$0HYv2st22nkcRJKk5Lcuf.4BWaR8KOgKPXNbEhs6iP04/FrafY7OK",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d25f5db3de192ba57de7",
+      "name": "Frank Wilson",
+      "email": "frank.wilson@example.com",
+      "password": "$2b$10$DFlfPtxEle.Fzq.MXhnzKeVHYbMPWoGs5p3z4RYWXykJP2oczEkJ2",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d29d5db3de192ba57e0a",
+      "name": "David Miller",
+      "email": "david.miller@example.com",
+      "password": "$2b$10$CL2xN61KeUIsZtGF4Skfeexh8q9cIaR6wrOlkUanu7GQj4I4C6t6G",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d2d95db3de192ba57e2d",
+      "name": "Eva Green",
+      "email": "eva.green@example.com",
+      "password": "$2b$10$LSyNSTcFijSepMEkDNKRRu.IzkCBZEM6K83Orkx6YM.pUDZ/yhU6G",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d30b5db3de192ba57e50",
+      "name": "Olivia Parker",
+      "email": "olivia.parker@example.com",
+      "password": "$2b$10$s78DT1/LPOM1faR09YE0uuTN9U5L3.ZyNIsZDr9lTnGfhD8H4egMi",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d3455db3de192ba57e73",
+      "name": " Ethan Harris",
+      "email": "ethan.harris@example.com",
+      "password": "$2b$10$MFcOSbyoGaLw/QkV8VZIt.uZdPHph737x67ujZqNfSa..B6LDle8C",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d37e5db3de192ba57e97",
+      "name": "Mia Roberts",
+      "email": "mia.roberts@example.com",
+      "password": "$2b$10$BBzXsyvpwwPqEOFnHR6psuOEs5TDeKvMoId3bm3rkbdeHPWAHaAsK",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d3be5db3de192ba57eba",
+      "name": " Lucas Turner",
+      "email": "lucas.turner@example.com",
+      "password": "$2b$10$nF7lre1lE5wwNXJfSbEeSed6K8DlrWlZWbDAqAXyCib7tDrVgoaxW",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d3fe5db3de192ba57edd",
+      "name": "Isabella King",
+      "email": "isabella.king@example.com",
+      "password": "$2b$10$RqujTCoinTUIa8t4psZU3.VCFcNOCjMI8JAwpnPkMQYCIm2c5G/5W",
+      "role": "mentee",
+      "__v": 0
+    },
+    {
+      "_id": "67e7d4355db3de192ba57f00",
+      "name": "Mason Scott",
+      "email": "mason.scott@example.com",
+      "password": "$2b$10$X16CQklpq/JO5S7cDxES2Odz4iwIaoHsiQ5m/epgN7IJwGHwfx9vO",
+      "role": "mentee",
+      "__v": 0
+    }
+  ]
+}
