@@ -67,7 +67,7 @@ const menteeRoutes = require('./routes/menteeRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
 const matchmakingRoutes = require('./routes/matchmakingRoutes');
 const userRoutes = require('./routes/userRoutes');
-const connectionRoutes = require('./routes/connectionRoutes');
+// const connectionRoutes = require('./routes/connectionRoutes');
 
 // Register routes
 app.use('/api/auth', authRoutes);
@@ -76,7 +76,7 @@ app.use('/api/mentees', menteeRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/matchmaking', matchmakingRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/connections', connectionRoutes);
+// app.use('/api/connections', connectionRoutes);
 
 // Handle Python Flask routes
 app.post('/api/chat', (req, res) => {
