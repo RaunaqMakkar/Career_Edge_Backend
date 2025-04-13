@@ -1,4 +1,4 @@
-// BackEnd/models/ConnectionRequest.js
+// BackEnd/models/connectionRequest.js
 const mongoose = require("mongoose");
 
 const connectionRequestSchema = new mongoose.Schema(
