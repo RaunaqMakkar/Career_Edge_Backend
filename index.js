@@ -21,11 +21,7 @@ async function connectToDatabase() {
       // These settings help with Vercel's serverless functions
       bufferCommands: false,
       maxPoolSize: 10, // Limit number of connections in the pool
-      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity,
-      // Allow connections from any IP address (important for Vercel deployment)
-      autoIndex: true,
-      retryWrites: true,
-      w: "majority"
+      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     };
 
     const client = await mongoose.connect(process.env.MONGO_URI, options);
