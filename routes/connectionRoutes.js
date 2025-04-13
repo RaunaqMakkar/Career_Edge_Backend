@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const { protect } = require("../middleware/authMiddleware");
-const ConnectionRequest = require("../models/connectionRequest");
+const ConnectionRequest = require("../models/ConnectionRequest");
 const {
   createConnectionRequest,
   acceptConnectionRequest,
