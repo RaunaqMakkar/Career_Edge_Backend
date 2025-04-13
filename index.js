@@ -46,28 +46,72 @@ app.get('/', (req, res) => {
   res.json({ message: 'Career Edge API is running' });
 });
 
-// Connect to MongoDB for production
-if (process.env.NODE_ENV === 'production') {
-  mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-      console.log('MongoDB connected for production');
-      // For Vercel serverless deployment, we don't need to explicitly listen
-      // as Vercel will handle the HTTP requests
-    })
-    .catch(err => console.error('MongoDB Connection Error:', err));
+// MongoDB connection with optimized settings for serverless environment
+let cachedDb = null;
+
+async function connectToDatabase() {
+  if (cachedDb) {
+    return cachedDb;
+  }
+  
+  try {
+    // Connection options optimized for serverless
+    const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+      // These settings help with Vercel's serverless functions
+      bufferCommands: false,
+      maxPoolSize: 10, // Limit number of connections in the pool
+      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+    };
+
+    const client = await mongoose.connect(process.env.MONGO_URI, options);
+    cachedDb = client;
+    console.log('MongoDB connected successfully');
+    return cachedDb;
+  } catch (error) {
+    console.error('MongoDB Connection Error:', error);
+    // Don't throw the error - handle it gracefully
+    return null;
+  }
 }
 
-// Make sure you have this for local development
-if (process.env.NODE_ENV !== 'production') {
-  mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-      console.log('MongoDB connected for development');
+// Connect to MongoDB - works for both production and development
+connectToDatabase()
+  .then(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      // Only start the server in development mode
       app.listen(process.env.PORT || 5000, () => {
         console.log(`Server running on port ${process.env.PORT || 5000}`);
       });
-    })
-    .catch(err => console.error('MongoDB Connection Error:', err));
-}
+    }
+  })
+  .catch(err => {
+    console.error('Failed to connect to database:', err);
+  });
+
+
+// Add error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err);
+  res.status(500).json({ 
+    error: 'Internal Server Error', 
+    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  });
+});
+
+// Add middleware to ensure database connection before processing requests
+app.use(async (req, res, next) => {
+  try {
+    // Ensure we have a database connection for each request
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    console.error('Database connection error:', error);
+    res.status(500).json({ error: 'Database connection failed' });
+  }
+});
 
 // This is important for Vercel deployment
 module.exports = app;
