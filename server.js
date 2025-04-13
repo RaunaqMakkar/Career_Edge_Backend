@@ -5,7 +5,14 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+
+// Configure CORS to allow requests from your frontend domain
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://career-edge-frontend.vercel.app/' 
+    : 'http://localhost:3000'
+}));
+
 app.use(express.json());
 
 // Import routes

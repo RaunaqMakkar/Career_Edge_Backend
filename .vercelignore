@@ -1,0 +1,19 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node modules (though Vercel handles this automatically)
+node_modules/
+
+# Environment files (should be set in Vercel dashboard)
+.env
+.env.local
+
+# Development files
+.git/
+.gitignore
+
+# Testing files
+test/
+tests/
