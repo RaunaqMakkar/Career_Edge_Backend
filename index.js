@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 // MongoDB connection with optimized settings for serverless environment
 let cachedDb = null;
@@ -51,7 +52,7 @@ app.use(async (req, res, next) => {
 // Configure CORS to allow requests from your frontend domain
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://career-edge-frontend.vercel.app' 
+    ? 'https://career-edge-frontend.vercel.app/' 
     : 'http://localhost:3000',
   credentials: true
 }));
