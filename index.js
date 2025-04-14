@@ -6,9 +6,10 @@ const jwt = require('jsonwebtoken');
 
 // MongoDB connection with optimized settings for serverless environment
 let cachedDb = null;
+let isConnected = false;
 
 async function connectToDatabase() {
-  if (cachedDb) {
+  if (cachedDb && isConnected) {
     return cachedDb;
   }
   
@@ -19,7 +20,7 @@ async function connectToDatabase() {
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000, // Increased timeout for Vercel
       // These settings help with Vercel's serverless functions
-      bufferCommands: false,
+      bufferCommands: true, // Changed to true to allow buffering commands
       maxPoolSize: 10, // Limit number of connections in the pool
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
       retryWrites: true,
@@ -29,6 +30,7 @@ async function connectToDatabase() {
     console.log('Attempting to connect to MongoDB...');
     const client = await mongoose.connect(process.env.MONGO_URI, options);
     cachedDb = client;
+    isConnected = true;
     console.log('MongoDB connected successfully');
     return cachedDb;
   } catch (error) {
@@ -41,10 +43,14 @@ async function connectToDatabase() {
 const app = express();
 
 // Add middleware to ensure database connection before processing requests
+// Modify the middleware to ensure connection is complete
 app.use(async (req, res, next) => {
   try {
     // Ensure we have a database connection for each request
     await connectToDatabase();
+    if (!isConnected) {
+      return res.status(500).json({ error: 'Database connection not established' });
+    }
     next();
   } catch (error) {
     console.error('Database connection error:', error);
