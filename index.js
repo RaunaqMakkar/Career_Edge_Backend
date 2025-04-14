@@ -60,8 +60,11 @@ app.use(async (req, res, next) => {
 
 // Configure CORS to allow requests from your frontend domain
 app.use(cors({
-  origin: '*', // Allow all origins temporarily for debugging
-  credentials: true
+  origin: ['https://career-edge-frontend.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 // Other middleware like express.json(), etc.
