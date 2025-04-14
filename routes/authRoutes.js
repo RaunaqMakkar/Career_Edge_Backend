@@ -1,13 +1,24 @@
 // routes/authRoutes.js
 const express = require("express");
 const router = express.Router();
-const { signup, login } = require("../controllers/authController");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User"); // Make sure to import your User model
+// const { signup, login } = require("../controllers/authController"); // Comment this out since we're defining login directly
 
 // Define POST /signup endpoint
-router.post("/signup", signup);
+router.post("/signup", async (req, res) => {
+  // If you still want to use the controller function
+  try {
+    const { signup } = require("../controllers/authController");
+    return signup(req, res);
+  } catch (error) {
+    console.error('Signup error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
 
 // Define POST /login endpoint
-// Add this to your login route
 router.post('/login', async (req, res) => {
   try {
     console.log('Login request received:', req.body);
