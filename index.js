@@ -54,9 +54,7 @@ app.use(async (req, res, next) => {
 
 // Configure CORS to allow requests from your frontend domain
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://career-edge-frontend.vercel.app' // Removed trailing slash
-    : 'http://localhost:3000',
+  origin: '*', // Allow all origins temporarily for debugging
   credentials: true
 }));
 
