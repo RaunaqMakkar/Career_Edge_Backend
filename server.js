@@ -16,21 +16,23 @@ app.use(cors({
 app.use(express.json());
 
 // Import routes
-const authRoutes = require("./routes/authRoutes");
-const mentorRoutes = require("./routes/mentorRoutes");
-const menteeRoutes = require("./routes/menteeRoutes");
-const appointmentRoutes = require("./routes/appointmentRoutes");
-const matchmakingRoutes = require("./routes/matchmakingRoutes");
-const userRoutes = require("./routes/userRoutes");
-const connectionRoutes = require("./routes/connectionRoutes");
+const authRoutes = require('./routes/authRoutes');
+const mentorRoutes = require('./routes/mentorRoutes');
+const menteeRoutes = require('./routes/menteeRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
+const matchmakingRoutes = require('./routes/matchmakingRoutes');
+const userRoutes = require('./routes/userRoutes');
+// Comment out this line to prevent the error
+// const connectionRoutes = require('./routes/connectionRoutes');
 
-app.use("/api/auth", authRoutes);
-app.use("/api/mentors", mentorRoutes);
-app.use("/api/mentees", menteeRoutes);
-app.use("/api/appointments", appointmentRoutes);
-app.use("/api/matchmaking", matchmakingRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/connections", connectionRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/mentors', mentorRoutes);
+app.use('/api/mentees', menteeRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/matchmaking', matchmakingRoutes);
+app.use('/api/users', userRoutes);
+// Comment out this line as well
+// app.use('/api/connections', connectionRoutes);
 
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI)
