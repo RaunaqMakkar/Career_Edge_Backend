@@ -17,13 +17,16 @@ async function connectToDatabase() {
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
+      serverSelectionTimeoutMS: 30000, // Increased timeout for Vercel
       // These settings help with Vercel's serverless functions
       bufferCommands: false,
       maxPoolSize: 10, // Limit number of connections in the pool
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+      retryWrites: true,
+      w: 'majority'
     };
 
+    console.log('Attempting to connect to MongoDB...');
     const client = await mongoose.connect(process.env.MONGO_URI, options);
     cachedDb = client;
     console.log('MongoDB connected successfully');
@@ -52,7 +55,7 @@ app.use(async (req, res, next) => {
 // Configure CORS to allow requests from your frontend domain
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://career-edge-frontend.vercel.app/' 
+    ? 'https://career-edge-frontend.vercel.app' // Removed trailing slash
     : 'http://localhost:3000',
   credentials: true
 }));
