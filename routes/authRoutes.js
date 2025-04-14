@@ -3,8 +3,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User"); // Make sure to import your User model
-// const { signup, login } = require("../controllers/authController"); // Comment this out since we're defining login directly
+// Fix the path to the User model - check if it's in models/User.js or models/user.js
+const User = require("../models/user"); // Changed from User to user (lowercase)
 
 // Define POST /signup endpoint
 router.post("/signup", async (req, res) => {
