@@ -45,9 +45,8 @@ exports.getAllAppointments = async (req, res) => {
 // Get appointments for the logged-in user
 exports.getAppointmentsForUser = async (req, res) => {
   try {
-    const userId = req.user._id;
-    // Return appointments where user is mentor OR mentee
-    const query = { $or: [{ mentor: userId }, { mentee: userId }] };
+    const userId = req.user._id; // Get user ID from JWT (ensure authentication middleware is applied)
+    const query = { $or: [{ mentor: userId }, { mentee: userId }] }; // Find appointments where user is either mentor or mentee
     console.log("Query for appointments:", query);
 
     const appointments = await Appointment.find(query)
@@ -55,12 +54,13 @@ exports.getAppointmentsForUser = async (req, res) => {
       .populate("mentee", "name email");
 
     console.log("Found appointments:", appointments);
-    return res.json(appointments);
+    return res.json(appointments); // Return the appointments for the logged-in user
   } catch (error) {
     console.error("Error fetching appointments:", error);
     return res.status(500).json({ message: error.message });
   }
 };
+
 
 // Get a single appointment by ID
 exports.getAppointmentById = async (req, res) => {
