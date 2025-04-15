@@ -17,12 +17,9 @@ const connectToDatabase = async () => {
   try {
     console.log('Connecting to MongoDB...');
     
-    // Connection options optimized for production
+    // Updated connection options without deprecated settings
     const options = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000,
-      bufferCommands: true,
       maxPoolSize: 10,
       socketTimeoutMS: 45000,
       retryWrites: true,
