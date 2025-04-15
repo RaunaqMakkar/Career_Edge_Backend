@@ -7,9 +7,15 @@ exports.createAppointment = async (req, res) => {
   const { mentor, mentee, appointmentDate, message, mentorEmail, menteeEmail } = req.body;
 
   try {
+    // Log the user creating the appointment and the data
+    console.log("User creating appointment:", req.user._id);
+    console.log("Appointment data:", { mentor, mentee, appointmentDate, message });
+    
     // Save the new appointment
     const appointment = new Appointment({ mentor, mentee, appointmentDate, message });
     await appointment.save();
+    
+    console.log("Appointment created:", appointment);
 
     // Optionally create a calendar event
     try {
@@ -26,6 +32,7 @@ exports.createAppointment = async (req, res) => {
 
     res.status(201).json(appointment);
   } catch (error) {
+    console.error("Error creating appointment:", error);
     res.status(500).json({ message: error.message });
   }
 };
