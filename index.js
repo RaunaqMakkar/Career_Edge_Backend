@@ -7,10 +7,11 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: "*",  // For production, replace with specific origin
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 app.use(express.json());
