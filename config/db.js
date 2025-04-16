@@ -1,44 +1,32 @@
+// config/db.js
 const mongoose = require('mongoose');
 
-// Track connection status
+let cachedDb = null;
 let isConnected = false;
-let cachedConnection = null;
 
-/**
- * Connect to MongoDB database
- * @returns {Promise<mongoose>} Mongoose connection
- */
 const connectToDatabase = async () => {
-  // If we already have a connection, return it
-  if (isConnected && cachedConnection) {
-    return cachedConnection;
-  }
+  if (cachedDb && isConnected) return cachedDb;
 
   try {
-    console.log('Connecting to MongoDB...');
-    
-    // Updated connection options without deprecated settings
     const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000,
+      bufferCommands: true,
       maxPoolSize: 10,
       socketTimeoutMS: 45000,
       retryWrites: true,
       w: 'majority'
     };
 
-    // Connect to MongoDB
-    const connection = await mongoose.connect(process.env.MONGO_URI, options);
-    
-    // Update connection status
+    console.log('Connecting to MongoDB...');
+    const client = await mongoose.connect(process.env.MONGO_URI, options);
+    cachedDb = client;
     isConnected = true;
-    cachedConnection = connection;
-    
     console.log('MongoDB connected successfully');
-    return connection;
-  } catch (error) {
-    console.error('MongoDB Connection Error:', error);
-    isConnected = false;
-    cachedConnection = null;
+    return cachedDb;
+  } catch (err) {
+    console.error('MongoDB Connection Error:', err.message);
     return null;
   }
 };
