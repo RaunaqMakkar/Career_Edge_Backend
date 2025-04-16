@@ -1,108 +1,84 @@
-const Connection = require('../models/Connection');
-const User = require('../models/User');
+// BackEnd/controllers/connectionController.js
+// const ConnectionRequest = require("../models/ConnectionRequest");
 
-// Send a connection request
-exports.sendConnectionRequest = async (req, res) => {
-  try {
+// Existing function for creating a connection request
+exports.createConnectionRequest = async (req, res) => {
     const { mentorId, message } = req.body;
-    const menteeId = req.user.id; // Assuming you have authentication middleware
+    const menteeId = req.user._id; // Mentee's ID should be here
 
-    console.log(`Received connection request: mentee=${menteeId}, mentor=${mentorId}`);
+    console.log("Mentor ID:", mentorId, "Mentee ID:", menteeId); // Debugging
 
-    // Validate that mentor exists
-    const mentor = await User.findById(mentorId);
-    if (!mentor) {
-      return res.status(404).json({ error: 'Mentor not found' });
+    try {
+        const connectionRequest = new ConnectionRequest({
+            mentor: mentorId,
+            mentee: menteeId, // Make sure this is the correct mentee ID
+            message,
+            status: "pending",
+        });
+
+        await connectionRequest.save();
+        res.status(201).json({ message: "Connection request sent", connectionRequest });
+    } catch (error) {
+        console.error("Error creating connection request:", error);
+        res.status(500).json({ message: error.message });
     }
-
-    // Check if a connection already exists
-    const existingConnection = await Connection.findOne({
-      mentee: menteeId,
-      mentor: mentorId
-    });
-
-    if (existingConnection) {
-      return res.status(400).json({ 
-        error: 'Connection request already exists',
-        status: existingConnection.status
-      });
-    }
-
-    // Create new connection request
-    const connection = new Connection({
-      mentee: menteeId,
-      mentor: mentorId,
-      message: message || ''
-    });
-
-    await connection.save();
-    
-    res.status(201).json({ 
-      message: 'Connection request sent successfully',
-      connection
-    });
-  } catch (error) {
-    console.error('Error sending connection request:', error);
-    res.status(500).json({ error: 'Failed to send connection request' });
-  }
 };
 
-// Get all connection requests for a user
-exports.getConnectionRequests = async (req, res) => {
-  try {
-    const userId = req.user.id;
-    
-    // Get pending requests received (as mentor)
-    const receivedRequests = await Connection.find({
-      mentor: userId,
-      status: 'pending'
-    }).populate('mentee', 'name email profilePicture');
-    
-    // Get sent requests (as mentee)
-    const sentRequests = await Connection.find({
-      mentee: userId
-    }).populate('mentor', 'name email profilePicture');
-    
-    res.json({
-      received: receivedRequests,
-      sent: sentRequests
-    });
-  } catch (error) {
-    console.error('Error getting connection requests:', error);
-    res.status(500).json({ error: 'Failed to get connection requests' });
-  }
+// Existing function for accepting a connection request
+exports.acceptConnectionRequest = async (req, res) => {
+    const { requestId } = req.params;
+    try {
+        const request = await ConnectionRequest.findById(requestId);
+        if (!request) {
+            return res.status(404).json({ message: "Request not found" });
+        }
+        // Optional: Verify the mentor making the request is the intended recipient
+        if (request.mentor.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: "Not authorized to accept this request" });
+        }
+        request.status = "accepted";
+        await request.save();
+        res.json({ message: "Connection request accepted", request });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
-// Accept or reject a connection request
-exports.respondToConnectionRequest = async (req, res) => {
-  try {
-    const { connectionId, status } = req.body;
-    const userId = req.user.id;
-    
-    if (!['accepted', 'rejected'].includes(status)) {
-      return res.status(400).json({ error: 'Invalid status' });
+// NEW: Get pending connection requests for the logged-in mentor
+exports.getPendingConnectionRequests = async (req, res) => {
+    try {
+        // Ensure that the logged-in user is a mentor
+        // You might have a role property on the user object from the protect middleware
+        if (req.user.role.toLowerCase() !== "mentor") {
+            return res.status(403).json({ message: "Only mentors can view connection requests" });
+        }
+        const requests = await ConnectionRequest.find({
+            mentor: req.user._id,
+            status: "pending",
+        })
+            .populate("mentee", "name email") // Get basic info about the mentee
+            .lean();
+        res.json(requests);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    
-    const connection = await Connection.findById(connectionId);
-    
-    if (!connection) {
-      return res.status(404).json({ error: 'Connection request not found' });
+};
+
+// NEW: Decline a connection request
+exports.declineConnectionRequest = async (req, res) => {
+    const { requestId } = req.params;
+    try {
+        const request = await ConnectionRequest.findById(requestId);
+        if (!request) {
+            return res.status(404).json({ message: "Request not found" });
+        }
+        if (request.mentor.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: "Not authorized to decline this request" });
+        }
+        request.status = "declined";
+        await request.save();
+        res.json({ message: "Connection request declined", request });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    
-    // Verify the user is the mentor for this request
-    if (connection.mentor.toString() !== userId) {
-      return res.status(403).json({ error: 'Not authorized to respond to this request' });
-    }
-    
-    connection.status = status;
-    await connection.save();
-    
-    res.json({
-      message: `Connection request ${status}`,
-      connection
-    });
-  } catch (error) {
-    console.error('Error responding to connection request:', error);
-    res.status(500).json({ error: 'Failed to respond to connection request' });
-  }
 };
