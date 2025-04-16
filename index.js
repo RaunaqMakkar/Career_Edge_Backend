@@ -37,7 +37,6 @@ const menteeRoutes = require('./routes/menteeRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
 const matchmakingRoutes = require('./routes/matchmakingRoutes');
 const userRoutes = require('./routes/userRoutes');
-const chatRoutes = require('./routes/chatRoutes'); // Add this line
 
 app.use('/api/auth', authRoutes);
 app.use('/api/mentors', mentorRoutes);
@@ -45,7 +44,6 @@ app.use('/api/mentees', menteeRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/matchmaking', matchmakingRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/chat', chatRoutes); // Add this line
 
 app.get('/', (req, res) => {
   res.json({ message: 'Career Edge API is running' });
