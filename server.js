@@ -25,7 +25,12 @@ const userRoutes = require('./routes/userRoutes');
 // Comment out this line to prevent the error
 // const connectionRoutes = require('./routes/connectionRoutes');
 
-// Later in the file:
+app.use('/api/auth', authRoutes);
+app.use('/api/mentors', mentorRoutes);
+app.use('/api/mentees', menteeRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/matchmaking', matchmakingRoutes);
+app.use('/api/users', userRoutes);
 // Comment out this line as well
 // app.use('/api/connections', connectionRoutes);
 
