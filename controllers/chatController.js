@@ -14,20 +14,22 @@ exports.chatWithAI = async (req, res) => {
 
     console.log("Received message:", message);
     
-    // Initialize the model - UPDATED MODEL NAME to gemini-1.0-pro
-    const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
+    // Initialize the model - Using gemini-2.0-flash model
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    // Career guidance context to help the model provide relevant responses
-    const prompt = `
-      You are a helpful career guidance assistant. Provide advice on career paths, 
-      job searching, resume building, interview preparation, and professional development. 
-      Be supportive, informative, and concise in your responses.
-      
-      User query: ${message}
-    `;
+    // Prepare the content in the correct format
+    const content = {
+      contents: [{
+        parts: [{ text: `You are a helpful career guidance assistant. Provide advice on career paths, 
+        job searching, resume building, interview preparation, and professional development. 
+        Be supportive, informative, and concise in your responses.
+        
+        User query: ${message}` }]
+      }]
+    };
 
     // Generate content
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent(content.contents[0].parts);
     const response = result.response.text();
     
     console.log("Response generated successfully");
