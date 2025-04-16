@@ -13,21 +13,20 @@ exports.chatWithAI = async (req, res) => {
     }
 
     console.log("Received message:", message);
-    console.log("API Key status:", process.env.GEMINI_API_KEY ? "Available" : "Missing");
+    
+    // Initialize the model - UPDATED MODEL NAME to gemini-1.0-pro
+    const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
-    // Initialize the model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-    // Use simple content generation instead of chat
+    // Career guidance context to help the model provide relevant responses
     const prompt = `
-      You are a helpful career guidance assistant for the CareerEdge platform.
-      Provide advice on career paths, job searching, resume building, interview preparation,
-      and professional development. Be supportive, informative, and concise.
+      You are a helpful career guidance assistant. Provide advice on career paths, 
+      job searching, resume building, interview preparation, and professional development. 
+      Be supportive, informative, and concise in your responses.
       
       User query: ${message}
     `;
 
-    // Generate content directly
+    // Generate content
     const result = await model.generateContent(prompt);
     const response = result.response.text();
     
