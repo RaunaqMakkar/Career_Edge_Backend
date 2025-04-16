@@ -1,25 +1,18 @@
-// BackEnd/routes/connectionRoutes.js
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { protect } = require("../middleware/authMiddleware");
-const ConnectionRequest = require("../models/ConnectionRequest");
-const {
-  createConnectionRequest,
-  acceptConnectionRequest,
-  getPendingConnectionRequests,
-  declineConnectionRequest,
-} = require("../controllers/connectionController");
+const { sendConnectionRequest, getConnectionRequests, respondToConnectionRequest } = require('../controllers/connectionController');
+const { authenticate } = require('../middleware/auth');
 
-// Mentee sends a connection request
-router.post("/", protect, createConnectionRequest);
+// All routes require authentication
+router.use(authenticate);
 
-// Mentor fetches pending connection requests
-router.get("/requests", protect, getPendingConnectionRequests);
+// Send a connection request
+router.post('/', sendConnectionRequest);
 
-// Mentor accepts a connection request
-router.put("/accept/:requestId", protect, acceptConnectionRequest);
+// Get all connection requests for the current user
+router.get('/', getConnectionRequests);
 
-// Mentor declines a connection request
-router.put("/decline/:requestId", protect, declineConnectionRequest);
+// Accept or reject a connection request
+router.put('/:id', respondToConnectionRequest);
 
 module.exports = router;

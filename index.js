@@ -39,6 +39,11 @@ const matchmakingRoutes = require('./routes/matchmakingRoutes');
 const userRoutes = require('./routes/userRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 
+// Add this with your other route imports
+const connectionRoutes = require('./routes/connectionRoutes');
+
+// Add this with your other app.use statements
+app.use('/api/connections', connectionRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/mentors', mentorRoutes);
 app.use('/api/mentees', menteeRoutes);
