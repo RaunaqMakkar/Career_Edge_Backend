@@ -1,5 +1,5 @@
 // BackEnd/controllers/connectionController.js
-// const ConnectionRequest = require("../models/ConnectionRequest");
+const ConnectionRequest = require("../models/ConnectionRequest"); // Uncomment this line
 
 // Existing function for creating a connection request
 exports.createConnectionRequest = async (req, res) => {

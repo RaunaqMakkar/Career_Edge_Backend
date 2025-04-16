@@ -2,24 +2,24 @@
 const mongoose = require('mongoose');
 
 const connectionRequestSchema = new mongoose.Schema({
-  sender: {
+  mentor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  receiver: {
+  mentee: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    required: true
+  },
+  message: {
+    type: String,
     required: true
   },
   status: {
     type: String,
-    enum: ['pending', 'accepted', 'rejected'],
+    enum: ['pending', 'accepted', 'declined'],
     default: 'pending'
-  },
-  message: {
-    type: String,
-    default: ''
   },
   createdAt: {
     type: Date,
@@ -27,4 +27,6 @@ const connectionRequestSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('ConnectionRequest', connectionRequestSchema);
+const ConnectionRequest = mongoose.model('ConnectionRequest', connectionRequestSchema);
+
+module.exports = ConnectionRequest;
