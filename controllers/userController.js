@@ -1,9 +1,6 @@
 // controllers/userController.js
 const User = require("../models/user");
 
-// @desc    Get user profile
-// @route   GET /api/users/profile
-// @access  Private
 exports.getUserProfile = async (req, res) => {
   try {
     // req.user is set by the auth middleware
